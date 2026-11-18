@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,8 +30,53 @@
                 Your workspace for exploring and evaluating AI prompts.
             </p>
 
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-info col-md-6 mx-auto">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% if current_user.is_authenticated %}
+
+                <p class="mt-4">
+                    Welcome, <strong>{{ current_user.username }}</strong>!
+                </p>
+
+                <div class="mt-4">
+                    <a href="{{ url_for('experiments.new_experiment') }}"
+                       class="btn btn-primary btn-lg me-2">
+                        New Experiment
+                    </a>
+
+                    <a href="{{ url_for('auth.logout') }}"
+                       class="btn btn-outline-secondary btn-lg">
+                        Sign Out
+                    </a>
+                </div>
+
+            {% else %}
+
+                <div class="mt-4">
+                    <a href="{{ url_for('auth.register') }}"
+                       class="btn btn-primary btn-lg me-2">
+                        Create Account
+                    </a>
+
+                    <a href="{{ url_for('auth.login') }}"
+                       class="btn btn-outline-primary btn-lg">
+                        Sign In
+                    </a>
+                </div>
+
+            {% endif %}
+
         </div>
     </main>
 
 </body>
 </html>
+

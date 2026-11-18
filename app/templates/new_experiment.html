@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New Experiment | AI Prompt Lab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <h1 class="mb-2">AI Prompt Lab</h1>
+            <p class="text-muted mb-4">
+                Evaluate your AI response and save your experiment.
+            </p>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-info">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="h4 mb-4">New Experiment</h2>
+
+                    <form method="POST">
+
+                        <div class="mb-3">
+                            <label for="title" class="form-label">
+                                Experiment Title
+                            </label>
+                            <input type="text" class="form-control"
+                                   id="title" name="title" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="prompt" class="form-label">
+                                Your Prompt
+                            </label>
+                            <textarea class="form-control" id="prompt"
+                                      name="prompt" rows="4" required></textarea>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="ai_response" class="form-label">
+                                AI Response
+                            </label>
+                            <textarea class="form-control" id="ai_response"
+                                      name="ai_response" rows="5" required></textarea>
+                        </div>
+
+                        <hr>
+
+                        <h3 class="h5 mb-2">Evaluate the Response</h3>
+                        <p class="text-muted">
+                            Rate each category from 1 (poor) to 5 (excellent).
+                        </p>
+
+                        <div class="mb-3">
+                            <label for="relevance_score" class="form-label">
+                                Relevance
+                            </label>
+                            <select class="form-select" id="relevance_score"
+                                    name="relevance_score" required>
+                                <option value="">Choose a score</option>
+                                <option value="1">1 - Poor</option>
+                                <option value="2">2 - Fair</option>
+                                <option value="3">3 - Good</option>
+                                <option value="4">4 - Very Good</option>
+                                <option value="5">5 - Excellent</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="clarity_score" class="form-label">
+                                Clarity
+                            </label>
+                            <select class="form-select" id="clarity_score"
+                                    name="clarity_score" required>
+                                <option value="">Choose a score</option>
+                                <option value="1">1 - Poor</option>
+                                <option value="2">2 - Fair</option>
+                                <option value="3">3 - Good</option>
+                                <option value="4">4 - Very Good</option>
+                                <option value="5">5 - Excellent</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="completeness_score" class="form-label">
+                                Completeness
+                            </label>
+                            <select class="form-select" id="completeness_score"
+                                    name="completeness_score" required>
+                                <option value="">Choose a score</option>
+                                <option value="1">1 - Poor</option>
+                                <option value="2">2 - Fair</option>
+                                <option value="3">3 - Good</option>
+                                <option value="4">4 - Very Good</option>
+                                <option value="5">5 - Excellent</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="notes" class="form-label">
+                                Notes (Optional)
+                            </label>
+                            <textarea class="form-control" id="notes"
+                                      name="notes" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Save Experiment
+                        </button>
+
+                        <a href="{{ url_for('home') }}"
+                           class="btn btn-outline-secondary ms-2">
+                            Back Home
+                        </a>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
